@@ -62,7 +62,7 @@ const CustomerBookingsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] flex items-center justify-center">
         <motion.div
           className="relative w-16 h-16"
           animate={{ rotate: 360 }}
@@ -77,15 +77,15 @@ const CustomerBookingsPage = () => {
   const getStatusStyles = (status) => {
     switch(status) {
       case 'confirmed':
-        return 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-200 border border-green-500/30';
+        return 'bg-green-100 text-green-700 border border-green-300';
       case 'pending':
-        return 'bg-gradient-to-r from-yellow-500/20 to-amber-500/20 text-yellow-200 border border-yellow-500/30';
+        return 'bg-yellow-100 text-yellow-700 border border-yellow-300';
       case 'cancelled':
-        return 'bg-gradient-to-r from-red-500/20 to-red-600/20 text-red-200 border border-red-500/30';
+        return 'bg-red-100 text-red-700 border border-red-300';
       case 'completed':
-        return 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-200 border border-blue-500/30';
+        return 'bg-blue-100 text-blue-700 border border-blue-300';
       default:
-        return 'bg-gradient-to-r from-gray-500/20 to-gray-600/20 text-gray-200 border border-gray-500/30';
+        return 'bg-gray-100 text-gray-700 border border-gray-300';
     }
   };
 
@@ -100,7 +100,7 @@ const CustomerBookingsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -108,16 +108,16 @@ const CustomerBookingsPage = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="text-5xl font-extrabold text-white mb-2">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Bookings</span>
+          <h1 className="text-5xl font-extrabold text-[#7a2222] mb-2">
+            My Bookings
           </h1>
-          <p className="text-xl text-gray-300">View and manage all your event bookings</p>
+          <p className="text-xl text-gray-700">View and manage all your event bookings</p>
         </motion.div>
 
         {/* Error Message */}
         {error && (
           <motion.div
-            className="mb-8 p-6 bg-red-500/20 border border-red-500/50 text-red-200 rounded-2xl backdrop-blur-sm"
+            className="mb-8 p-6 bg-red-100 border border-red-300 text-red-700 rounded-2xl backdrop-blur-sm text-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
@@ -128,7 +128,7 @@ const CustomerBookingsPage = () => {
         {/* Success Message */}
         {success && (
           <motion.div
-            className="mb-8 p-6 bg-green-500/20 border border-green-500/50 text-green-200 rounded-2xl backdrop-blur-sm"
+            className="mb-8 p-6 bg-green-100 border border-green-300 text-green-700 rounded-2xl backdrop-blur-sm text-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
@@ -139,12 +139,12 @@ const CustomerBookingsPage = () => {
         {/* Empty State */}
         {bookings.length === 0 ? (
           <motion.div
-            className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-2xl p-16 text-center border border-white/10"
+            className="bg-white/80 backdrop-blur-sm rounded-2xl p-16 text-center border border-[#bfa544]/20"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
           >
             <p className="text-5xl mb-4">🎭</p>
-            <p className="text-gray-300 text-xl mb-2">No bookings yet</p>
+            <p className="text-gray-700 text-xl mb-2">No bookings yet</p>
             <p className="text-gray-400 mb-6">Start by searching for a venue and creating your first booking!</p>
             <motion.a
               href="/customer/halls"
@@ -164,7 +164,7 @@ const CustomerBookingsPage = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
             >
-              <span className="text-gray-300 text-lg">
+              <span className="text-gray-700 text-lg">
                 Showing <span className="font-bold text-[#bfa544]">{bookings.length}</span> booking{bookings.length !== 1 ? 's' : ''}
               </span>
             </motion.div>
@@ -182,15 +182,15 @@ const CustomerBookingsPage = () => {
               {bookings.map((booking, idx) => (
                 <motion.div
                   key={booking._id}
-                  className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/10 hover:border-[#bfa544]/50 transition group"
+                  className="bg-gradient-to-br bg-white/80 backdrop-blur-xl rounded-2xl overflow-hidden border border-[#bfa544]/20 hover:border-[#bfa544]/50 transition group"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.05 }}
                   whileHover={{ y: -4 }}
                 >
                   {/* Header Section */}
-                  <div className="p-6 bg-gradient-to-r from-slate-800/50 to-slate-700/50 border-b border-white/10">
-                    <h3 className="text-xl font-bold text-white mb-2">
+                  <div className="p-6 bg-gradient-to-r bg-white/80 border-b border-[#bfa544]/20">
+                    <h3 className="text-xl font-bold text-[#7a2222] mb-2">
                       🏘️ {booking.hall?.name || 'Hall'}
                     </h3>
                     <motion.div
@@ -206,41 +206,41 @@ const CustomerBookingsPage = () => {
                   {/* Main Content */}
                   <div className="p-6">
                     {/* Quick Info */}
-                    <motion.div className="space-y-2 mb-6 pb-6 border-b border-white/10">
+                    <motion.div className="space-y-2 mb-6 pb-6 border-b border-[#bfa544]/20">
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-400">📅 Date:</span>
-                        <span className="text-white font-semibold">
+                        <span className="text-[#7a2222]">📅 Date:</span>
+                        <span className="text-gray-900 font-semibold">
                           {booking.timeSlot?.date ? new Date(booking.timeSlot.date).toLocaleDateString() : 'N/A'}
                         </span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-400">⏰ Time:</span>
-                        <span className="text-white font-semibold">
+                        <span className="text-[#7a2222]">⏰ Time:</span>
+                        <span className="text-gray-900 font-semibold">
                           {booking.timeSlot?.startTime} - {booking.timeSlot?.endTime}
                         </span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-400">👥 Guests:</span>
-                        <span className="text-white font-semibold">{booking.guestCount}</span>
+                        <span className="text-[#7a2222]">👥 Guests:</span>
+                        <span className="text-gray-900 font-semibold">{booking.guestCount}</span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-400">🎉 Event Type:</span>
-                        <span className="text-white font-semibold">{booking.functionType}</span>
+                        <span className="text-[#7a2222]">🎉 Event Type:</span>
+                        <span className="text-gray-900 font-semibold">{booking.functionType}</span>
                       </div>
                     </motion.div>
 
                     {/* Expanded Details */}
                     {expandedBooking === booking._id && (
                       <motion.div
-                        className="space-y-3 mb-6 pb-6 border-b border-white/10"
+                        className="space-y-3 mb-6 pb-6 border-b border-[#bfa544]/20"
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                       >
                         {booking.menu?.name && (
                           <div className="text-sm">
-                            <span className="text-gray-400">🍽️ Menu:</span>
-                            <span className="text-white block font-semibold">{booking.menu.name}</span>
+                            <span className="text-[#7a2222]">🍽️ Menu:</span>
+                            <span className="text-gray-900 block font-semibold">{booking.menu.name}</span>
                           </div>
                         )}
                         
@@ -248,19 +248,19 @@ const CustomerBookingsPage = () => {
                         <div className="bg-[#bfa544]/10 rounded-lg p-3 border border-[#bfa544]/30">
                           <div className="space-y-2 text-sm">
                             <div className="flex justify-between">
-                              <span className="text-gray-400">Base Price:</span>
-                              <span className="text-white">PKR {booking.basePrice?.toLocaleString()}</span>
+                              <span className="text-[#7a2222]">Base Price:</span>
+                              <span className="text-gray-900">PKR {booking.basePrice?.toLocaleString()}</span>
                             </div>
                             {booking.menuPrice > 0 && (
                               <div className="flex justify-between">
-                                <span className="text-gray-400">Menu Price:</span>
-                                <span className="text-white">PKR {booking.menuPrice?.toLocaleString()}</span>
+                                <span className="text-[#7a2222]">Menu Price:</span>
+                                <span className="text-gray-900">PKR {booking.menuPrice?.toLocaleString()}</span>
                               </div>
                             )}
                             {booking.functionTypeCharge > 0 && (
                               <div className="flex justify-between">
-                                <span className="text-gray-400">Function Charge:</span>
-                                <span className="text-white">PKR {booking.functionTypeCharge?.toLocaleString()}</span>
+                                <span className="text-[#7a2222]">Function Charge:</span>
+                                <span className="text-gray-900">PKR {booking.functionTypeCharge?.toLocaleString()}</span>
                               </div>
                             )}
                             <div className="flex justify-between border-t border-[#bfa544]/30 pt-2 font-bold">
@@ -272,8 +272,8 @@ const CustomerBookingsPage = () => {
 
                         {booking.notes && (
                           <div className="text-sm">
-                            <span className="text-gray-400">📝 Notes:</span>
-                            <p className="text-white mt-1">{booking.notes}</p>
+                            <span className="text-[#7a2222]">📝 Notes:</span>
+                            <p className="text-gray-900 mt-1">{booking.notes}</p>
                           </div>
                         )}
                       </motion.div>
@@ -282,7 +282,7 @@ const CustomerBookingsPage = () => {
                     {/* Price Summary */}
                     <div className="mb-6 p-3 bg-gradient-to-r from-[#bfa544]/20 to-[#8b7a2a]/20 rounded-lg border border-[#bfa544]/30">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-300 font-semibold">💰 Total:</span>
+                        <span className="text-gray-700 font-semibold">💰 Total:</span>
                         <span className="text-lg font-bold text-[#ffd700]">
                           PKR {booking.totalPrice?.toLocaleString()}
                         </span>
@@ -294,7 +294,7 @@ const CustomerBookingsPage = () => {
                       {/* Toggle Details */}
                       <motion.button
                         onClick={() => setExpandedBooking(expandedBooking === booking._id ? null : booking._id)}
-                        className="w-full px-4 py-2 bg-slate-700/50 hover:bg-slate-600/50 text-white rounded-lg font-semibold transition text-sm"
+                        className="w-full px-4 py-2 bg-gray-200 hover:bg-gray-300 text-[#7a2222] rounded-lg font-semibold transition text-sm"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
@@ -305,7 +305,7 @@ const CustomerBookingsPage = () => {
                       {(booking.status === 'pending' || booking.status === 'confirmed') && (
                         <motion.button
                           onClick={() => setCancelConfirm({ open: true, bookingId: booking._id })}
-                          className="w-full px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-200 rounded-lg font-semibold transition text-sm border border-red-500/30"
+                          className="w-full px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg font-semibold transition text-sm border border-red-300"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                         >
@@ -342,18 +342,18 @@ const CustomerBookingsPage = () => {
           onClick={() => setCancelConfirm({ open: false, bookingId: null })}
         >
           <motion.div
-            className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-[#bfa544]/30 max-w-sm w-full"
+            className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 border border-[#bfa544]/20 max-w-sm w-full"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="text-2xl font-bold text-white mb-4">Cancel Booking?</h2>
-            <p className="text-gray-300 mb-8">Are you sure you want to cancel this booking? This action cannot be undone.</p>
+            <h2 className="text-2xl font-bold text-[#7a2222] mb-4">Cancel Booking?</h2>
+            <p className="text-gray-700 mb-8">Are you sure you want to cancel this booking? This action cannot be undone.</p>
             <div className="flex gap-4">
               <motion.button
                 onClick={() => setCancelConfirm({ open: false, bookingId: null })}
                 disabled={cancelLoading}
-                className="flex-1 px-4 py-3 bg-slate-700 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg font-bold transition"
+                className="flex-1 px-4 py-3 bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed text-[#7a2222] rounded-lg font-bold transition"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -386,3 +386,4 @@ const CustomerBookingsPage = () => {
 };
 
 export default CustomerBookingsPage;
+

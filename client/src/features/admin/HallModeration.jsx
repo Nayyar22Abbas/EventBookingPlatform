@@ -13,16 +13,16 @@ function ConfirmModal({ open, onClose, onConfirm, loading }) {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl shadow-2xl w-full max-w-md p-8 border border-white/10"
+            className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl shadow-2xl w-full max-w-md p-8 border border-[#bfa544]/20"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
           >
             <h2 className="text-2xl font-bold text-white mb-4">Delete Hall?</h2>
-            <p className="text-gray-300 mb-6">Are you sure you want to delete this hall? This action cannot be undone.</p>
+            <p className="text-gray-700 mb-6">Are you sure you want to delete this hall? This action cannot be undone.</p>
             <div className="flex gap-2 justify-end">
               <motion.button
-                className="px-4 py-2 text-gray-300 border border-gray-600 rounded-lg hover:bg-slate-600/50 transition"
+                className="px-4 py-2 text-gray-700 border border-gray-600 rounded-lg hover:bg-slate-600/50 transition"
                 onClick={onClose}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -80,14 +80,14 @@ export default function HallModeration() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-8 flex items-center justify-center">
         <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: 'linear' }} className="w-12 h-12 border-4 border-[#bfa544]/30 border-t-[#bfa544] rounded-full" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -96,10 +96,10 @@ export default function HallModeration() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-2">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[#7a2222] mb-2">
             Hall <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Moderation</span>
           </h1>
-          <p className="text-xl text-gray-300">Review and manage all halls on the platform</p>
+          <p className="text-xl text-gray-700">Review and manage all halls on the platform</p>
         </motion.div>
 
         {/* Toast */}
@@ -124,8 +124,8 @@ export default function HallModeration() {
             animate={{ opacity: 1 }}
           >
             <div className="text-6xl mb-4">🏛️</div>
-            <p className="text-gray-300 text-xl">No halls found</p>
-            <p className="text-gray-400">No halls are currently registered on the platform</p>
+            <p className="text-gray-700 text-xl">No halls found</p>
+            <p className="text-gray-600">No halls are currently registered on the platform</p>
           </motion.div>
         ) : (
           <motion.div
@@ -137,12 +137,12 @@ export default function HallModeration() {
             {halls.map((hall) => (
               <motion.div
                 key={hall.id}
-                className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-[#bfa544]/50 transition overflow-hidden"
+                className="bg-gradient-to-br bg-white/80 backdrop-blur-xl border border-[#bfa544]/20 rounded-2xl p-6 hover:border-[#bfa544]/50 transition overflow-hidden"
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                 whileHover={{ y: -5 }}
               >
                 {/* Hall Image Placeholder */}
-                <div className="w-full h-40 bg-gradient-to-br from-[#bfa544]/20 to-[#7a2222]/20 rounded-xl mb-4 flex items-center justify-center border border-white/10">
+                <div className="w-full h-40 bg-gradient-to-br from-[#bfa544]/20 to-[#7a2222]/20 rounded-xl mb-4 flex items-center justify-center border border-[#bfa544]/20">
                   <span className="text-4xl">🏛️</span>
                 </div>
 
@@ -151,8 +151,8 @@ export default function HallModeration() {
                   <h3 className="text-xl font-bold text-white truncate">{hall.name}</h3>
                   
                   <div className="space-y-1">
-                    <p className="text-sm text-gray-400">👤 Owner: <span className="text-gray-300 font-semibold">{hall.ownerName}</span></p>
-                    <p className="text-sm text-gray-400">📅 Created: <span className="text-gray-300">{new Date(hall.createdAt).toLocaleDateString()}</span></p>
+                    <p className="text-sm text-gray-600">👤 Owner: <span className="text-gray-700 font-semibold">{hall.ownerName}</span></p>
+                    <p className="text-sm text-gray-600">📅 Created: <span className="text-gray-700">{new Date(hall.createdAt).toLocaleDateString()}</span></p>
                   </div>
 
                   {/* Status Badge */}
@@ -189,3 +189,7 @@ export default function HallModeration() {
     </div>
   );
 }
+
+
+
+

@@ -21,7 +21,7 @@ const CustomerReviewsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -29,33 +29,33 @@ const CustomerReviewsPage = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="text-5xl font-extrabold text-white mb-2">
+          <h1 className="text-5xl font-extrabold text-[#7a2222] mb-2">
             Hall <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Reviews</span>
           </h1>
-          <p className="text-xl text-gray-300">Share your experience and help other couples</p>
+          <p className="text-xl text-gray-700">Share your experience and help other couples</p>
         </motion.div>
 
         {/* Review Form */}
         <motion.div
-          className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-3xl p-8 md:p-12 mb-12 border border-white/10"
+          className="bg-gradient-to-br bg-white/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 mb-12 border border-[#bfa544]/20"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <h2 className="text-3xl font-bold text-white mb-2">✍️ Share Your Experience</h2>
-          <p className="text-gray-400 mb-8">Help other couples make their special day memorable</p>
+          <h2 className="text-3xl font-bold text-[#7a2222] mb-2">✍️ Share Your Experience</h2>
+          <p className="text-gray-600 mb-8">Help other couples make their special day memorable</p>
           
           <form onSubmit={handleSubmitReview} className="space-y-6">
             {/* Hall Selection */}
             <motion.div
-              className="bg-gradient-to-br from-slate-700/50 to-slate-600/50 rounded-2xl p-6 border border-white/10"
+              className="bg-white/80 rounded-2xl p-6 border border-[#bfa544]/20"
               whileHover={{ y: -2 }}
             >
-              <label className="block text-sm font-bold text-gray-200 mb-3">🏘️ Select Hall *</label>
+              <label className="block text-sm font-bold text-[#7a2222] mb-3">🏘️ Select Hall *</label>
               <select
                 value={selectedHall}
                 onChange={(e) => setSelectedHall(e.target.value)}
-                className="w-full px-5 py-3 bg-slate-600/50 border border-[#bfa544]/30 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
+                className="w-full px-5 py-3 bg-white border border-[#bfa544]/30 rounded-xl text-[#7a2222] focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
                 required
               >
                 <option value="">Choose a hall you've booked</option>
@@ -66,10 +66,10 @@ const CustomerReviewsPage = () => {
 
             {/* Star Rating */}
             <motion.div
-              className="bg-gradient-to-br from-slate-700/50 to-slate-600/50 rounded-2xl p-6 border border-white/10"
+              className="bg-white/80 rounded-2xl p-6 border border-[#bfa544]/20"
               whileHover={{ y: -2 }}
             >
-              <label className="block text-sm font-bold text-gray-200 mb-4">⭐ Rating *</label>
+              <label className="block text-sm font-bold text-[#7a2222] mb-4">⭐ Rating *</label>
               <div className="flex gap-2">
                 {[1, 2, 3, 4, 5].map(star => (
                   <motion.button
@@ -81,7 +81,7 @@ const CustomerReviewsPage = () => {
                     className={`text-5xl transition ${
                       star <= (hoveredStar || rating)
                         ? 'text-[#ffd700] drop-shadow-lg'
-                        : 'text-slate-600 hover:text-[#bfa544]'
+                        : 'text-gray-300 hover:text-[#bfa544]'
                     }`}
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
@@ -90,7 +90,7 @@ const CustomerReviewsPage = () => {
                   </motion.button>
                 ))}
               </div>
-              <p className="text-sm text-gray-400 mt-3">
+              <p className="text-sm text-gray-700 mt-3">
                 You're rating: <span className="font-bold text-[#bfa544]">
                   {hoveredStar || rating} out of 5 stars
                 </span>
@@ -99,19 +99,19 @@ const CustomerReviewsPage = () => {
 
             {/* Review Textarea */}
             <motion.div
-              className="bg-gradient-to-br from-slate-700/50 to-slate-600/50 rounded-2xl p-6 border border-white/10"
+              className="bg-white/80 rounded-2xl p-6 border border-[#bfa544]/20"
               whileHover={{ y: -2 }}
             >
-              <label className="block text-sm font-bold text-gray-200 mb-3">📝 Your Review *</label>
+              <label className="block text-sm font-bold text-[#7a2222] mb-3">📝 Your Review *</label>
               <textarea
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 rows="5"
-                className="w-full px-5 py-3 bg-slate-600/50 border border-[#bfa544]/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition resize-none"
+                className="w-full px-5 py-3 bg-white border border-[#bfa544]/30 rounded-xl text-[#7a2222] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition resize-none"
                 placeholder="Tell us about your experience... The venue, staff, food, decoration, overall experience..."
                 required
               />
-              <p className="text-xs text-gray-400 mt-2">
+              <p className="text-xs text-gray-700 mt-2">
                 {comment.length} characters
               </p>
             </motion.div>
@@ -119,7 +119,7 @@ const CustomerReviewsPage = () => {
             {/* Success Message */}
             {submitted && (
               <motion.div
-                className="p-6 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/50 text-green-200 rounded-2xl flex items-center gap-3 backdrop-blur-sm"
+                className="p-6 bg-green-100 border border-green-300 text-green-700 rounded-2xl flex items-center gap-3 backdrop-blur-sm"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
               >
@@ -148,22 +148,22 @@ const CustomerReviewsPage = () => {
 
         {/* Past Reviews */}
         <motion.div
-          className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white/10"
+          className="bg-gradient-to-br bg-white/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-[#bfa544]/20"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <h2 className="text-3xl font-bold text-white mb-8">📜 Your Past Reviews</h2>
+          <h2 className="text-3xl font-bold text-[#7a2222] mb-8">📜 Your Past Reviews</h2>
           
           {reviews.length === 0 ? (
             <motion.div
-              className="bg-gradient-to-br from-slate-700/50 to-slate-600/50 rounded-2xl p-12 text-center border border-white/10"
+              className="bg-gray-100 rounded-2xl p-12 text-center border border-gray-300"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
               <p className="text-5xl mb-4">📝</p>
-              <p className="text-gray-400 text-lg">No reviews yet</p>
-              <p className="text-gray-500 mt-2">Once you book and complete an event, you'll be able to leave reviews</p>
+              <p className="text-gray-700 text-lg">No reviews yet</p>
+              <p className="text-gray-600 mt-2">Once you book and complete an event, you'll be able to leave reviews</p>
             </motion.div>
           ) : (
             <motion.div
@@ -175,7 +175,7 @@ const CustomerReviewsPage = () => {
               {reviews.map((review, idx) => (
                 <motion.div
                   key={review._id}
-                  className="bg-gradient-to-br from-slate-700/50 to-slate-600/50 border border-white/10 rounded-2xl p-6 hover:border-[#bfa544]/50 transition group overflow-hidden"
+                  className="bg-white border border-[#bfa544]/20 rounded-2xl p-6 hover:border-[#bfa544]/50 transition group overflow-hidden"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   whileHover={{ x: 8 }}
@@ -186,7 +186,7 @@ const CustomerReviewsPage = () => {
                   {/* Content */}
                   <div className="relative">
                     <div className="flex justify-between items-start mb-4">
-                      <h3 className="font-bold text-xl text-white">{review.hallName}</h3>
+                      <h3 className="font-bold text-xl text-[#7a2222]">{review.hallName}</h3>
                       <motion.div
                         className="text-[#ffd700] text-2xl"
                         initial={{ opacity: 0, scale: 0 }}
@@ -197,8 +197,8 @@ const CustomerReviewsPage = () => {
                         {'☆'.repeat(5 - review.rating)}
                       </motion.div>
                     </div>
-                    <p className="text-gray-300 leading-relaxed mb-4">{review.comment}</p>
-                    <p className="text-xs text-gray-500">📅 {review.date}</p>
+                    <p className="text-gray-700 leading-relaxed mb-4">{review.comment}</p>
+                    <p className="text-xs text-gray-600">📅 {review.date}</p>
                   </div>
                 </motion.div>
               ))}
@@ -211,3 +211,4 @@ const CustomerReviewsPage = () => {
 };
 
 export default CustomerReviewsPage;
+

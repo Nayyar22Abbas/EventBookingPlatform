@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import AdminLayout from './layouts/AdminLayout';
 import HallOwnerLayout from './layouts/HallOwnerLayout';
 import CustomerLayout from './layouts/CustomerLayout';
+import PublicLayout from './layouts/PublicLayout';
 
 // Components
-import ProtectedRoute from './routes/ProtectedRoute';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // Auth Pages
 import LoginPage from './features/auth/LoginPage';
@@ -46,6 +47,24 @@ function App() {
           <Route path="/auth/login" element={<LoginPage />} />
           <Route path="/auth/register" element={<RegisterPage />} />
           <Route path="/auth/google-callback" element={<GoogleCallback />} />
+
+          {/* Public Hall Browsing Routes */}
+          <Route
+            path="/halls"
+            element={
+              <PublicLayout>
+                <CustomerHallsPage />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/halls/:id"
+            element={
+              <PublicLayout>
+                <CustomerHallDetailsPage />
+              </PublicLayout>
+            }
+          />
 
           {/* Admin Routes */}
           <Route

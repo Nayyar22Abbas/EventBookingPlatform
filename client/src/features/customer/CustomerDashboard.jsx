@@ -58,7 +58,7 @@ const CustomerDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -67,10 +67,10 @@ const CustomerDashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-3">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[#7a2222] mb-3">
             Welcome to Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Dashboard</span>
           </h1>
-          <p className="text-xl text-gray-300">Manage your event bookings and find the perfect venue</p>
+          <p className="text-xl text-gray-700">Manage your event bookings and find the perfect venue</p>
         </motion.div>
 
         {/* Error Message */}
@@ -114,13 +114,13 @@ const CustomerDashboard = () => {
               {statCards.map((stat, i) => (
                 <motion.div
                   key={i}
-                  className={`bg-gradient-to-br ${stat.color} rounded-2xl shadow-xl p-8 border border-white/10 hover:shadow-2xl transition transform hover:scale-105`}
+                  className={`bg-gradient-to-br ${stat.color} rounded-2xl shadow-xl p-8 border border-[#bfa544]/20 hover:shadow-2xl transition transform hover:scale-105`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * i }}
                 >
                   <div className="text-4xl mb-3">{stat.icon}</div>
-                  <div className="text-gray-100 text-sm font-medium mb-2">{stat.label}</div>
+                  <div className="text-gray-800 text-sm font-medium mb-2">{stat.label}</div>
                   <div className="text-3xl font-bold text-white">{stat.value}</div>
                 </motion.div>
               ))}
@@ -128,7 +128,7 @@ const CustomerDashboard = () => {
 
             {/* Quick Search */}
             <motion.div
-              className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl shadow-xl p-8 mb-12 border border-white/10"
+              className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl shadow-xl p-8 mb-12 border border-[#bfa544]/20"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
@@ -168,7 +168,7 @@ const CustomerDashboard = () => {
                 <motion.button
                   key={i}
                   onClick={() => navigate(btn.path)}
-                  className={`px-8 py-6 bg-gradient-to-br ${btn.color} text-white rounded-2xl hover:shadow-2xl transition font-bold text-lg border border-white/10 transform`}
+                  className={`px-8 py-6 bg-gradient-to-br ${btn.color} text-white rounded-2xl hover:shadow-2xl transition font-bold text-lg border border-[#bfa544]/20 transform`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + 0.1 * i }}
@@ -187,3 +187,6 @@ const CustomerDashboard = () => {
 };
 
 export default CustomerDashboard;
+
+
+

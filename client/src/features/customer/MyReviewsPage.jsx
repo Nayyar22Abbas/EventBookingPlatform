@@ -50,7 +50,7 @@ const MyReviewsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] flex items-center justify-center">
         <motion.div
           className="relative w-16 h-16"
           animate={{ rotate: 360 }}
@@ -63,7 +63,7 @@ const MyReviewsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -71,10 +71,10 @@ const MyReviewsPage = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="text-5xl font-extrabold text-white mb-2">
+          <h1 className="text-5xl font-extrabold text-[#7a2222] mb-2">
             My <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Reviews</span>
           </h1>
-          <p className="text-xl text-gray-300">View and manage your venue reviews</p>
+          <p className="text-xl text-gray-700">View and manage your venue reviews</p>
         </motion.div>
 
         {/* Error Message */}
@@ -91,13 +91,13 @@ const MyReviewsPage = () => {
         {/* Empty State */}
         {reviews.length === 0 ? (
           <motion.div
-            className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-2xl p-16 text-center border border-white/10"
+            className="bg-gradient-to-br bg-white/80 backdrop-blur-xl rounded-2xl p-16 text-center border border-[#bfa544]/20"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
           >
             <p className="text-5xl mb-4">⭐</p>
-            <p className="text-gray-300 text-xl mb-2">No reviews yet</p>
-            <p className="text-gray-400 mb-6">Complete a booking to leave a review for the venue!</p>
+            <p className="text-gray-700 text-xl mb-2">No reviews yet</p>
+            <p className="text-gray-600 mb-6">Complete a booking to leave a review for the venue!</p>
             <motion.a
               href="/customer/bookings"
               className="inline-block px-8 py-3 bg-gradient-to-r from-[#bfa544] to-[#8b7a2a] text-white rounded-xl font-bold hover:shadow-lg transition"
@@ -116,7 +116,7 @@ const MyReviewsPage = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
             >
-              <span className="text-gray-300 text-lg">
+              <span className="text-gray-700 text-lg">
                 <span className="font-bold text-[#bfa544]">{reviews.length}</span> review{reviews.length !== 1 ? 's' : ''} submitted
               </span>
             </motion.div>
@@ -134,15 +134,15 @@ const MyReviewsPage = () => {
               {reviews.map((review, idx) => (
                 <motion.div
                   key={review._id}
-                  className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/10 hover:border-[#bfa544]/50 transition group"
+                  className="bg-gradient-to-br bg-white/80 backdrop-blur-xl rounded-2xl overflow-hidden border border-[#bfa544]/20 hover:border-[#bfa544]/50 transition group"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.05 }}
                   whileHover={{ y: -4 }}
                 >
                   {/* Header */}
-                  <div className="p-6 bg-gradient-to-r from-slate-800/50 to-slate-700/50 border-b border-white/10">
-                    <h3 className="text-xl font-bold text-white mb-3">
+                  <div className="p-6 bg-gradient-to-r bg-white/80 border-b border-[#bfa544]/20">
+                    <h3 className="text-xl font-bold text-[#7a2222] mb-3">
                       🏘️ {review.hall?.name}
                     </h3>
                     {renderStars(review.rating)}
@@ -152,17 +152,17 @@ const MyReviewsPage = () => {
                   <div className="p-6">
                     {/* Location Info */}
                     {review.hall?.address && (
-                      <div className="mb-4 pb-4 border-b border-white/10">
-                        <p className="text-sm text-gray-400">📍 Location</p>
-                        <p className="text-white text-sm font-semibold">
+                      <div className="mb-4 pb-4 border-b border-[#bfa544]/20">
+                        <p className="text-sm text-gray-600">📍 Location</p>
+                        <p className="text-gray-900 text-sm font-semibold">
                           {review.hall.address}, {review.hall.city}
                         </p>
                       </div>
                     )}
 
                     {/* Rating with Label */}
-                    <div className="mb-4 pb-4 border-b border-white/10">
-                      <p className="text-sm text-gray-400 mb-2">⭐ Rating</p>
+                    <div className="mb-4 pb-4 border-b border-[#bfa544]/20">
+                      <p className="text-sm text-gray-600 mb-2">⭐ Rating</p>
                       <div className="flex items-center justify-between">
                         {renderStars(review.rating)}
                         <span className="text-lg font-bold text-[#ffd700]">
@@ -174,15 +174,15 @@ const MyReviewsPage = () => {
                     {/* Comment */}
                     {review.comment && (
                       <div className="mb-4">
-                        <p className="text-sm text-gray-400 mb-2">💬 Comment</p>
-                        <p className="text-white text-sm leading-relaxed bg-slate-700/30 p-3 rounded-lg border border-white/10">
+                        <p className="text-sm text-gray-600 mb-2">💬 Comment</p>
+                        <p className="text-gray-900 text-sm leading-relaxed bg-yellow-50 p-3 rounded-lg border border-[#bfa544]/20">
                           {review.comment}
                         </p>
                       </div>
                     )}
 
                     {/* Date */}
-                    <div className="text-xs text-gray-400 mb-6">
+                    <div className="text-xs text-gray-600 mb-6">
                       📅 {new Date(review.createdAt).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',
@@ -193,7 +193,7 @@ const MyReviewsPage = () => {
                     {/* Delete Button */}
                     <motion.button
                       onClick={() => setDeleteConfirm({ open: true, reviewId: review._id })}
-                      className="w-full px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-200 rounded-lg font-semibold transition text-sm border border-red-500/30"
+                      className="w-full px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg font-semibold transition text-sm border border-red-300"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -216,13 +216,13 @@ const MyReviewsPage = () => {
           onClick={() => setDeleteConfirm({ open: false, reviewId: null })}
         >
           <motion.div
-            className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-[#bfa544]/30 max-w-sm w-full"
+            className="bg-gradient-to-br bg-white/90 rounded-2xl p-8 border border-[#bfa544]/30 max-w-sm w-full"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="text-2xl font-bold text-white mb-4">Delete Review?</h2>
-            <p className="text-gray-300 mb-8">Are you sure you want to delete this review? This action cannot be undone.</p>
+            <h2 className="text-2xl font-bold text-[#7a2222] mb-4">Delete Review?</h2>
+            <p className="text-gray-700 mb-8">Are you sure you want to delete this review? This action cannot be undone.</p>
             <div className="flex gap-4">
               <motion.button
                 onClick={() => setDeleteConfirm({ open: false, reviewId: null })}
@@ -249,3 +249,7 @@ const MyReviewsPage = () => {
 };
 
 export default MyReviewsPage;
+
+
+
+

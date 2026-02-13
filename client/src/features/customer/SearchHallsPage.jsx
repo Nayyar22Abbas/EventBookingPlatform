@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import customerApi from '../../api/customerApi';
 
 const SearchHallsPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const [filters, setFilters] = useState({
     city: '',
@@ -18,6 +19,12 @@ const SearchHallsPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [hasSearched, setHasSearched] = useState(true);
+
+  // Determine if we're in authenticated or public context
+  const isPublicRoute = !location.pathname.startsWith('/customer');
+  const getHallDetailPath = (hallId) => {
+    return isPublicRoute ? `/halls/${hallId}` : `/customer/halls/${hallId}`;
+  };
 
   useEffect(() => {
     // Load all halls by default on mount
@@ -82,7 +89,7 @@ const SearchHallsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Page Header */}
         <motion.div
@@ -91,65 +98,65 @@ const SearchHallsPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl font-extrabold text-white mb-3">
+          <h1 className="text-5xl font-extrabold text-[#7a2222] mb-3">
             Find Your Perfect <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Venue</span>
           </h1>
-          <p className="text-xl text-gray-300">Search and filter from thousands of event halls</p>
+          <p className="text-xl text-gray-700">Search and filter from thousands of event halls</p>
         </motion.div>
 
         {/* Filters Section - Compact */}
         <motion.div
-          className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-xl shadow-lg p-4 mb-8 border border-white/10"
+          className="bg-gradient-to-br bg-white/80 backdrop-blur-xl rounded-xl shadow-lg p-4 mb-8 border border-[#bfa544]/20"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <h2 className="text-lg font-bold text-white mb-4">🔍 Filters</h2>
+          <h2 className="text-lg font-bold text-[#7a2222] mb-4">🔍 Filters</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 mb-4">
             {/* City */}
             <div>
-              <label className="block text-xs font-medium text-gray-200 mb-1">📍 City</label>
+              <label className="block text-xs font-medium text-[#7a2222] mb-1">📍 City</label>
               <input
                 type="text"
                 name="city"
                 value={filters.city}
                 onChange={handleFilterChange}
-                className="w-full px-3 py-2 text-sm bg-slate-600/50 border border-[#bfa544]/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
+                className="w-full px-3 py-2 text-sm bg-white border border-[#bfa544]/30 rounded-lg text-[#7a2222] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
                 placeholder="City"
               />
             </div>
             {/* Capacity */}
             <div>
-              <label className="block text-xs font-medium text-gray-200 mb-1">👥 Capacity</label>
+              <label className="block text-xs font-medium text-[#7a2222] mb-1">👥 Capacity</label>
               <input
                 type="number"
                 name="capacity"
                 value={filters.capacity}
                 onChange={handleFilterChange}
-                className="w-full px-3 py-2 text-sm bg-slate-600/50 border border-[#bfa544]/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
+                className="w-full px-3 py-2 text-sm bg-white border border-[#bfa544]/30 rounded-lg text-[#7a2222] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
                 placeholder="Guests"
               />
             </div>
             {/* Price */}
             <div>
-              <label className="block text-xs font-medium text-gray-200 mb-1">💰 Max Price</label>
+              <label className="block text-xs font-medium text-[#7a2222] mb-1">💰 Max Price</label>
               <input
                 type="number"
                 name="price"
                 value={filters.price}
                 onChange={handleFilterChange}
-                className="w-full px-3 py-2 text-sm bg-slate-600/50 border border-[#bfa544]/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
+                className="w-full px-3 py-2 text-sm bg-white border border-[#bfa544]/30 rounded-lg text-[#7a2222] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
                 placeholder="₹"
               />
             </div>
             {/* Event Function */}
             <div>
-              <label className="block text-xs font-medium text-gray-200 mb-1">🎉 Event Type</label>
+              <label className="block text-xs font-medium text-[#7a2222] mb-1">🎉 Event Type</label>
               <select
                 name="functionType"
                 value={filters.functionType}
                 onChange={handleFilterChange}
-                className="w-full px-3 py-2 text-sm bg-slate-600/50 border border-[#bfa544]/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
+                className="w-full px-3 py-2 text-sm bg-white border border-[#bfa544]/30 rounded-lg text-[#7a2222] focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
               >
                 <option value="">All Types</option>
                 <option value="Mehndi">💄 Mehndi</option>
@@ -161,24 +168,24 @@ const SearchHallsPage = () => {
             </div>
             {/* Date */}
             <div>
-              <label className="block text-xs font-medium text-gray-200 mb-1">📅 Date</label>
+              <label className="block text-xs font-medium text-[#7a2222] mb-1">📅 Date</label>
               <input
                 type="date"
                 name="date"
                 value={filters.date}
                 onChange={handleFilterChange}
-                className="w-full px-3 py-2 text-sm bg-slate-600/50 border border-[#bfa544]/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
+                className="w-full px-3 py-2 text-sm bg-white border border-[#bfa544]/30 rounded-lg text-[#7a2222] focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
               />
             </div>
             {/* Amenities */}
             <div>
-              <label className="block text-xs font-medium text-gray-200 mb-1">✨ Amenities</label>
+              <label className="block text-xs font-medium text-[#7a2222] mb-1">✨ Amenities</label>
               <input
                 type="text"
                 name="amenities"
                 value={filters.amenities}
                 onChange={handleFilterChange}
-                className="w-full px-3 py-2 text-sm bg-slate-600/50 border border-[#bfa544]/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
+                className="w-full px-3 py-2 text-sm bg-white border border-[#bfa544]/30 rounded-lg text-[#7a2222] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition"
                 placeholder="parking, wifi..."
               />
             </div>
@@ -194,7 +201,7 @@ const SearchHallsPage = () => {
             </motion.button>
             <motion.button
               onClick={handleReset}
-              className="px-6 py-2 text-sm bg-slate-600/50 text-gray-200 rounded-lg hover:bg-slate-600 transition font-bold border border-gray-500/30"
+              className="px-6 py-2 text-sm bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition font-bold border border-gray-400/50"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -235,7 +242,7 @@ const SearchHallsPage = () => {
         {!loading && hasSearched && (
           <>
             <motion.div
-              className="mb-6 text-gray-300 text-lg"
+              className="mb-6 text-gray-700 text-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
@@ -244,11 +251,19 @@ const SearchHallsPage = () => {
 
             {halls.length === 0 ? (
               <motion.div
-                className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 rounded-2xl shadow-xl p-12 text-center border border-white/10"
+                className="bg-gradient-to-br bg-white/80 rounded-2xl shadow-xl p-12 text-center border border-[#bfa544]/20"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <p className="text-gray-400 text-lg">💭 No halls found matching your criteria. Try adjusting your filters.</p>
+                <p className="text-gray-600 text-lg mb-6">💭 No halls found matching your criteria. Try adjusting your filters.</p>
+                <motion.button
+                  onClick={loadAllHalls}
+                  className="px-8 py-3 bg-gradient-to-r from-[#bfa544] to-[#8b7a2a] text-white rounded-xl font-bold hover:shadow-lg transition"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Show All Halls
+                </motion.button>
               </motion.div>
             ) : (
               <motion.div
@@ -263,11 +278,11 @@ const SearchHallsPage = () => {
                 {halls.map(hall => (
                   <motion.div
                     key={hall._id}
-                    className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition border border-white/10 group cursor-pointer"
+                    className="bg-gradient-to-br bg-white/80 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition border border-[#bfa544]/20 group cursor-pointer"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     whileHover={{ y: -5 }}
-                    onClick={() => navigate(`/customer/halls/${hall._id}`)}
+                    onClick={() => navigate(getHallDetailPath(hall._id))}
                   >
                     {/* Hall Image - Airbnb Style Thumbnail */}
                     <div className="relative h-48 overflow-hidden bg-gradient-to-br from-[#bfa544]/20 to-[#7a2222]/20">
@@ -289,7 +304,7 @@ const SearchHallsPage = () => {
                         <div className="w-full h-full flex items-center justify-center">
                           <div className="text-center">
                             <span className="text-5xl">🏛️</span>
-                            <p className="text-gray-400 text-sm mt-2">No image</p>
+                            <p className="text-gray-600 text-sm mt-2">No image</p>
                           </div>
                         </div>
                       )}
@@ -298,23 +313,23 @@ const SearchHallsPage = () => {
                     
                     {/* Hall Info */}
                     <div className="p-6">
-                      <h3 className="text-xl font-bold text-white mb-2">{hall.name}</h3>
-                      <p className="text-gray-400 text-sm mb-4">{hall.address}</p>
+                      <h3 className="text-xl font-bold text-[#7a2222] mb-2">{hall.name}</h3>
+                      <p className="text-gray-600 text-sm mb-4">{hall.address}</p>
                       
-                      <div className="space-y-3 mb-6 text-sm text-gray-300 border-t border-white/10 pt-4">
+                      <div className="space-y-3 mb-6 text-sm text-gray-700 border-t border-[#bfa544]/20 pt-4">
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-400">👥 Capacity:</span>
-                          <span className="font-semibold text-white">{hall.capacity} guests</span>
+                          <span className="text-gray-600">👥 Capacity:</span>
+                          <span className="font-semibold text-[#7a2222]">{hall.capacity} guests</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-400">💰 Base Price:</span>
+                          <span className="text-gray-600">💰 Base Price:</span>
                           <span className="font-bold text-[#bfa544]">₹{hall.basePrice?.toLocaleString()}</span>
                         </div>
                       </div>
 
                       {hall.amenities && hall.amenities.length > 0 && (
                         <div className="mb-6">
-                          <p className="text-xs text-gray-400 mb-3">✨ Amenities:</p>
+                          <p className="text-xs text-gray-600 mb-3">✨ Amenities:</p>
                           <div className="flex flex-wrap gap-2">
                             {hall.amenities.slice(0, 3).map((amenity, idx) => (
                               <span
@@ -325,7 +340,7 @@ const SearchHallsPage = () => {
                               </span>
                             ))}
                             {hall.amenities.length > 3 && (
-                              <span className="px-3 py-1 text-gray-400 text-xs">
+                              <span className="px-3 py-1 text-gray-600 text-xs">
                                 +{hall.amenities.length - 3} more
                               </span>
                             )}
@@ -336,7 +351,7 @@ const SearchHallsPage = () => {
                       <motion.button
                         onClick={(e) => {
                           e.stopPropagation();
-                          navigate(`/customer/halls/${hall._id}`);
+                          navigate(getHallDetailPath(hall._id));
                         }}
                         className="w-full px-4 py-3 bg-gradient-to-r from-[#bfa544] to-[#8b7a2a] text-white rounded-xl hover:shadow-lg transition font-bold"
                         whileHover={{ scale: 1.02 }}
@@ -354,11 +369,11 @@ const SearchHallsPage = () => {
 
         {!loading && !hasSearched && (
           <motion.div
-            className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 rounded-2xl shadow-xl p-12 text-center border border-white/10"
+            className="bg-gradient-to-br bg-white/80 rounded-2xl shadow-xl p-12 text-center border border-[#bfa544]/20"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <p className="text-gray-400 text-lg">👆 Use the filters above to search for venues</p>
+            <p className="text-gray-600 text-lg">👆 Use the filters above to search for venues</p>
           </motion.div>
         )}
       </div>
@@ -367,3 +382,6 @@ const SearchHallsPage = () => {
 };
 
 export default SearchHallsPage;
+
+
+

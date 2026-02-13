@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ParticlesBackground from '../components/ParticlesBackground';
+import useAuthStore from '../hooks/useAuth';
 
 // SVG paisley/floral motif for subtle section backgrounds
 const PaisleySVG = () => (
@@ -57,6 +58,9 @@ const features = [
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const { isAuthenticated, getUser, logout } = useAuthStore();
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const user = getUser();
 
   return (
     <div className="min-h-screen w-full bg-linear-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] flex flex-col relative overflow-x-hidden overflow-y-auto">
@@ -70,24 +74,70 @@ export default function LandingPage() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7 }}
       >
-        <div className="flex items-center gap-2">
-          <span className="text-2xl font-bold text-[#7a2222] tracking-tight">EventBook</span>
-        </div>
+        <motion.button
+          onClick={() => navigate('/')}
+          className="flex items-center gap-2 hover:opacity-80 transition"
+          whileHover={{ scale: 1.05 }}
+        >
+          <span className="text-2xl font-bold text-[#7a2222] tracking-tight">EventHub</span>
+        </motion.button>
         <div className="flex items-center gap-4 ml-auto">
           <motion.button
             className="px-5 py-2 bg-white text-[#7a2222] font-semibold rounded-full shadow hover:bg-[#bfa544] hover:text-white transition border border-[#bfa544]"
             whileHover={{ scale: 1.07 }}
-            onClick={() => navigate('/customer/halls')}
+            onClick={() => navigate('/halls')}
           >
             Browse Halls
           </motion.button>
-          <motion.button
-            className="px-5 py-2 bg-[#7a2222] text-white font-semibold rounded-full shadow hover:bg-[#bfa544] hover:text-white transition border border-[#7a2222]"
-            whileHover={{ scale: 1.07 }}
-            onClick={() => navigate('/auth/login')}
-          >
-            Login
-          </motion.button>
+          {isAuthenticated && user ? (
+            <div className="relative">
+              <motion.button
+                onClick={() => setShowUserMenu(!showUserMenu)}
+                className="flex items-center gap-2 px-4 py-2 bg-white/80 rounded-full border border-[#bfa544] hover:bg-[#bfa544]/10 transition"
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#bfa544] to-[#7a2222] flex items-center justify-center text-white font-bold">
+                  {user.name?.charAt(0).toUpperCase() || 'U'}
+                </div>
+                <span className="text-[#7a2222] font-semibold hidden sm:inline text-sm">{user.name?.split(' ')[0]}</span>
+              </motion.button>
+              <AnimatePresence>
+                {showUserMenu && (
+                  <motion.div
+                    className="absolute right-0 top-12 w-48 bg-white/95 backdrop-blur-md border border-[#bfa544]/20 rounded-xl shadow-xl z-50"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="p-3 border-b border-[#bfa544]/10">
+                      <p className="text-[#7a2222] font-bold text-sm">{user.name}</p>
+                      <p className="text-gray-600 text-xs">{user.email}</p>
+                    </div>
+                    <motion.button
+                      onClick={() => {
+                        logout();
+                        setShowUserMenu(false);
+                        navigate('/');
+                      }}
+                      className="w-full text-left px-4 py-3 text-red-600 hover:bg-red-50 transition font-semibold text-sm"
+                      whileHover={{ x: 5 }}
+                    >
+                      🚪 Logout
+                    </motion.button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ) : (
+            <motion.button
+              className="px-5 py-2 bg-[#7a2222] text-white font-semibold rounded-full shadow hover:bg-[#bfa544] hover:text-white transition border border-[#7a2222]"
+              whileHover={{ scale: 1.07 }}
+              onClick={() => navigate('/auth/login')}
+            >
+              Login
+            </motion.button>
+          )}
         </div>
       </motion.nav>
 

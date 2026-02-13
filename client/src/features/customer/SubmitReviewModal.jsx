@@ -54,7 +54,7 @@ const SubmitReviewModal = ({ booking, onClose, onSuccess }) => {
         onClick={onClose}
       >
         <motion.div
-          className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl max-w-2xl w-full p-8 border border-[#bfa544]/30"
+          className="bg-gradient-to-br bg-white/90 rounded-2xl max-w-2xl w-full p-8 border border-[#bfa544]/30"
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -66,13 +66,13 @@ const SubmitReviewModal = ({ booking, onClose, onSuccess }) => {
               <h2 className="text-3xl font-bold text-white mb-2">
                 ⭐ Share Your Feedback
               </h2>
-              <p className="text-gray-300">
+              <p className="text-gray-700">
                 How was your event at <span className="font-bold text-[#bfa544]">{booking.hall?.name}</span>?
               </p>
             </div>
             <motion.button
               onClick={onClose}
-              className="text-gray-400 hover:text-white text-2xl font-bold"
+              className="text-gray-600 hover:text-white text-2xl font-bold"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -82,28 +82,28 @@ const SubmitReviewModal = ({ booking, onClose, onSuccess }) => {
 
           {/* Event Info */}
           <motion.div
-            className="mb-8 p-4 bg-slate-700/30 rounded-lg border border-white/10"
+            className="mb-8 p-4 bg-slate-700/30 rounded-lg border border-[#bfa544]/20"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="text-gray-400">Function Type:</span>
-                <p className="text-white font-semibold">{booking.functionType}</p>
+                <span className="text-gray-600">Function Type:</span>
+                <p className="text-gray-900 font-semibold">{booking.functionType}</p>
               </div>
               <div>
-                <span className="text-gray-400">Date:</span>
-                <p className="text-white font-semibold">
+                <span className="text-gray-600">Date:</span>
+                <p className="text-gray-900 font-semibold">
                   {booking.timeSlot?.date ? new Date(booking.timeSlot.date).toLocaleDateString() : 'N/A'}
                 </p>
               </div>
               <div>
-                <span className="text-gray-400">Guests:</span>
-                <p className="text-white font-semibold">{booking.guestCount}</p>
+                <span className="text-gray-600">Guests:</span>
+                <p className="text-gray-900 font-semibold">{booking.guestCount}</p>
               </div>
               <div>
-                <span className="text-gray-400">Amount Paid:</span>
-                <p className="text-white font-semibold">PKR {booking.totalPrice?.toLocaleString()}</p>
+                <span className="text-gray-600">Amount Paid:</span>
+                <p className="text-gray-900 font-semibold">PKR {booking.totalPrice?.toLocaleString()}</p>
               </div>
             </div>
           </motion.div>
@@ -160,11 +160,11 @@ const SubmitReviewModal = ({ booking, onClose, onSuccess }) => {
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               placeholder="Share your experience with this venue..."
-              className="w-full px-4 py-3 bg-slate-700/50 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#bfa544]/50 focus:ring-1 focus:ring-[#bfa544]/30 resize-none"
+              className="w-full px-4 py-3 bg-slate-700/50 border border-[#bfa544]/20 rounded-lg text-[#7a2222] placeholder-gray-500 focus:outline-none focus:border-[#bfa544]/50 focus:ring-1 focus:ring-[#bfa544]/30 resize-none"
               rows={4}
               maxLength={1000}
             />
-            <div className="text-sm text-gray-400 mt-2">
+            <div className="text-sm text-gray-600 mt-2">
               {comment.length}/1000 characters
             </div>
           </motion.div>
@@ -219,3 +219,6 @@ const SubmitReviewModal = ({ booking, onClose, onSuccess }) => {
 };
 
 export default SubmitReviewModal;
+
+
+

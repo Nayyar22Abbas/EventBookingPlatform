@@ -6,11 +6,11 @@ import { motion } from 'framer-motion';
 function StatCard({ label, value, icon, color }) {
   return (
     <motion.div
-      className={`bg-gradient-to-br ${color} rounded-2xl shadow-xl p-8 border border-white/10 hover:shadow-2xl transition transform hover:scale-105`}
+      className={`bg-gradient-to-br ${color} rounded-2xl shadow-xl p-8 border border-[#bfa544]/20 hover:shadow-2xl transition transform hover:scale-105`}
       whileHover={{ y: -5 }}
     >
       <div className="text-4xl mb-3">{icon}</div>
-      <div className="text-gray-100 text-sm font-medium mb-2">{label}</div>
+      <div className="text-gray-800 text-sm font-medium mb-2">{label}</div>
       <div className="text-3xl font-bold text-white">{value}</div>
     </motion.div>
   );
@@ -45,16 +45,16 @@ export default function AdminDashboard() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-8 flex items-center justify-center">
         <motion.div className="text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <p className="text-red-400 text-xl">{error}</p>
+          <p className="text-red-600 text-xl">{error}</p>
         </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -63,10 +63,10 @@ export default function AdminDashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-3">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[#7a2222] mb-3">
             Admin <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Dashboard</span>
           </h1>
-          <p className="text-xl text-gray-300">Platform overview and management center</p>
+          <p className="text-xl text-gray-700">Platform overview and management center</p>
         </motion.div>
 
         {/* Loading State */}
@@ -122,7 +122,7 @@ export default function AdminDashboard() {
                 <motion.button
                   key={i}
                   onClick={() => navigate(btn.path)}
-                  className={`px-8 py-6 bg-gradient-to-br ${btn.color} text-white rounded-2xl hover:shadow-2xl transition font-bold text-lg border border-white/10 transform`}
+                  className={`px-8 py-6 bg-gradient-to-br ${btn.color} text-white rounded-2xl hover:shadow-2xl transition font-bold text-lg border border-[#bfa544]/20 transform`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 + 0.1 * i }}
@@ -139,3 +139,6 @@ export default function AdminDashboard() {
     </div>
   );
 }
+
+
+

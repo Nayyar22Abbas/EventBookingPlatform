@@ -98,7 +98,7 @@ const AddOnsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-8 flex items-center justify-center">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
@@ -109,7 +109,7 @@ const AddOnsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="mb-8"
@@ -117,10 +117,10 @@ const AddOnsPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-2">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[#7a2222] mb-2">
             Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Add-ons</span>
           </h1>
-          <p className="text-xl text-gray-300">Manage paid services and extras for your events</p>
+          <p className="text-xl text-gray-700">Manage paid services and extras for your events</p>
         </motion.div>
 
         {error && (
@@ -129,7 +129,7 @@ const AddOnsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             className="bg-red-500/20 border border-red-500/30 rounded-xl p-4 mb-6 flex items-center gap-3"
           >
-            <AlertCircle className="text-red-400" size={20} />
+            <AlertCircle className="text-red-600" size={20} />
             <p className="text-red-300">{error}</p>
           </motion.div>
         )}
@@ -137,7 +137,7 @@ const AddOnsPage = () => {
         {/* Add Add-On Button */}
         <motion.button
           onClick={() => setShowForm(!showForm)}
-          className="mb-8 px-6 py-3 bg-gradient-to-r from-[#bfa544] to-[#8b7a2a] text-white rounded-xl font-bold flex items-center gap-2 hover:shadow-lg transition"
+          className="mb-8 px-6 py-3 bg-gradient-to-r from-[#bfa544] to-[#8b7a2a] text-[#7a2222] rounded-xl font-bold flex items-center gap-2 hover:shadow-lg transition"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -152,27 +152,27 @@ const AddOnsPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="bg-gradient-to-br from-slate-800/50 to-slate-800/30 border border-white/10 rounded-2xl p-6 mb-8"
+              className="bg-gradient-to-br from-slate-800/50 to-slate-800/30 border border-[#bfa544]/20 rounded-2xl p-6 mb-8"
             >
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-300 mb-2">Add-On Name *</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Add-On Name *</label>
                     <input
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g., DJ Service, Fireworks"
-                      className="w-full px-4 py-2 bg-slate-700 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-4 py-2 bg-slate-700 border border-[#bfa544]/20 rounded-lg text-[#7a2222] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-300 mb-2">Category</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Category</label>
                     <select
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                      className="w-full px-4 py-2 bg-slate-700 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-4 py-2 bg-slate-700 border border-[#bfa544]/20 rounded-lg text-[#7a2222] focus:outline-none focus:ring-2 focus:ring-amber-500"
                     >
                       {categories.map((cat) => (
                         <option key={cat} value={cat}>
@@ -184,7 +184,7 @@ const AddOnsPage = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-300 mb-2">Price (Rs.) *</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Price (Rs.) *</label>
                     <input
                       type="number"
                       value={formData.price}
@@ -192,32 +192,32 @@ const AddOnsPage = () => {
                       placeholder="0"
                       min="0"
                       step="0.01"
-                      className="w-full px-4 py-2 bg-slate-700 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      className="w-full px-4 py-2 bg-slate-700 border border-[#bfa544]/20 rounded-lg text-[#7a2222] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
                       required
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-2">Description</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Description</label>
                   <textarea
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     placeholder="Describe this add-on service..."
-                    className="w-full px-4 py-2 bg-slate-700 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"
+                    className="w-full px-4 py-2 bg-slate-700 border border-[#bfa544]/20 rounded-lg text-[#7a2222] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"
                     rows="3"
                   />
                 </div>
                 <div className="flex gap-4">
                   <button
                     type="submit"
-                    className="flex-1 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg font-semibold hover:shadow-lg transition"
+                    className="flex-1 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-[#7a2222] rounded-lg font-semibold hover:shadow-lg transition"
                   >
                     {editingId ? 'Update' : 'Create'} Add-On
                   </button>
                   <button
                     type="button"
                     onClick={resetForm}
-                    className="flex-1 py-2 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600 transition"
+                    className="flex-1 py-2 bg-gray-700 text-[#7a2222] rounded-lg font-semibold hover:bg-gray-600 transition"
                   >
                     Cancel
                   </button>
@@ -235,8 +235,8 @@ const AddOnsPage = () => {
             animate={{ opacity: 1 }}
           >
             <div className="text-6xl mb-4">✨</div>
-            <p className="text-gray-300 text-xl">No add-ons created yet</p>
-            <p className="text-gray-400 mb-6">Create premium add-ons like DJ, photographer, or fireworks to increase your revenue</p>
+            <p className="text-gray-700 text-xl">No add-ons created yet</p>
+            <p className="text-gray-600 mb-6">Create premium add-ons like DJ, photographer, or fireworks to increase your revenue</p>
           </motion.div>
         ) : (
           <motion.div
@@ -248,7 +248,7 @@ const AddOnsPage = () => {
             {addOns.map((addOn) => (
               <motion.div
                 key={addOn._id}
-                className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-[#bfa544]/50 transition"
+                className="bg-gradient-to-br bg-white/80 backdrop-blur-xl border border-[#bfa544]/20 rounded-2xl p-6 hover:border-[#bfa544]/50 transition"
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                 whileHover={{ y: -5 }}
               >
@@ -260,12 +260,12 @@ const AddOnsPage = () => {
                 </div>
 
                 {/* Add-On Info */}
-                <h3 className="text-xl font-bold text-white mb-2">{addOn.name}</h3>
-                <p className="text-sm text-gray-400 mb-3 line-clamp-2">{addOn.description || 'No description'}</p>
+                <h3 className="text-xl font-bold text-[#7a2222] mb-2">{addOn.name}</h3>
+                <p className="text-sm text-gray-600 mb-3 line-clamp-2">{addOn.description || 'No description'}</p>
 
                 {/* Price */}
                 <div className="mb-4 p-3 bg-gradient-to-r from-[#bfa544]/20 to-[#ffd700]/20 rounded-lg border border-[#bfa544]/30">
-                  <p className="text-xs text-gray-400">Price</p>
+                  <p className="text-xs text-gray-600">Price</p>
                   <p className="text-2xl font-bold text-[#ffd700]">Rs. {addOn.price.toLocaleString('en-PK')}</p>
                 </div>
 
@@ -309,3 +309,4 @@ const AddOnsPage = () => {
 };
 
 export default AddOnsPage;
+

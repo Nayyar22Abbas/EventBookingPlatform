@@ -16,14 +16,14 @@ function EnquiryModal({ open, onClose, onSubmit, loading }) {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl shadow-2xl w-full max-w-md p-8 border border-white/10"
+            className="bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl shadow-2xl w-full max-w-md p-8 border border-[#bfa544]/20"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
           >
             <h2 className="text-2xl font-bold text-white mb-4">Respond to Enquiry</h2>
             <motion.textarea
-              className="w-full border border-[#bfa544]/30 bg-slate-600/50 rounded-xl p-3 mb-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition resize-none"
+              className="w-full border border-[#bfa544]/30 bg-slate-600/50 rounded-xl p-3 mb-4 text-[#7a2222] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition resize-none"
               rows={4}
               value={response}
               onChange={e => setResponse(e.target.value)}
@@ -32,7 +32,7 @@ function EnquiryModal({ open, onClose, onSubmit, loading }) {
             />
             <div className="flex gap-2 justify-end">
               <motion.button
-                className="px-4 py-2 text-gray-300 border border-gray-600 rounded-lg hover:bg-slate-600/50 transition"
+                className="px-4 py-2 text-gray-700 border border-gray-600 rounded-lg hover:bg-slate-600/50 transition"
                 onClick={onClose}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -67,8 +67,8 @@ const getStatusColor = (status) => {
   switch(status) {
     case 'pending': return 'text-yellow-400';
     case 'responded': return 'text-blue-400';
-    case 'closed': return 'text-gray-400';
-    default: return 'text-gray-300';
+    case 'closed': return 'text-gray-600';
+    default: return 'text-gray-700';
   }
 };
 
@@ -131,14 +131,14 @@ export default function EnquiryManagement() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-8 flex items-center justify-center">
         <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: 'linear' }} className="w-12 h-12 border-4 border-[#bfa544]/30 border-t-[#bfa544] rounded-full" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -147,10 +147,10 @@ export default function EnquiryManagement() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-2">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[#7a2222] mb-2">
             Enquiry <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Management</span>
           </h1>
-          <p className="text-xl text-gray-300">Manage customer enquiries and respond promptly</p>
+          <p className="text-xl text-gray-700">Manage customer enquiries and respond promptly</p>
         </motion.div>
 
         {/* Toast */}
@@ -174,9 +174,9 @@ export default function EnquiryManagement() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <label className="text-gray-300 font-semibold">Filter by Status:</label>
+          <label className="text-gray-700 font-semibold">Filter by Status:</label>
           <motion.select
-            className="px-4 py-2 bg-slate-700/50 border border-[#bfa544]/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#bfa544] transition"
+            className="px-4 py-2 bg-slate-700/50 border border-[#bfa544]/30 rounded-lg text-[#7a2222] focus:outline-none focus:ring-2 focus:ring-[#bfa544] transition"
             value={status}
             onChange={e => setStatus(e.target.value)}
             whileFocus={{ scale: 1.02 }}
@@ -195,8 +195,8 @@ export default function EnquiryManagement() {
             animate={{ opacity: 1 }}
           >
             <div className="text-6xl mb-4">💬</div>
-            <p className="text-gray-300 text-xl">No enquiries found</p>
-            <p className="text-gray-400">All enquiries have been resolved</p>
+            <p className="text-gray-700 text-xl">No enquiries found</p>
+            <p className="text-gray-600">All enquiries have been resolved</p>
           </motion.div>
         ) : (
           <motion.div
@@ -208,7 +208,7 @@ export default function EnquiryManagement() {
             {enquiries.map((enq) => (
               <motion.div
                 key={enq.id}
-                className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-[#bfa544]/50 transition"
+                className="bg-gradient-to-br bg-white/80 backdrop-blur-xl border border-[#bfa544]/20 rounded-2xl p-6 hover:border-[#bfa544]/50 transition"
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                 whileHover={{ y: -2 }}
               >
@@ -216,8 +216,8 @@ export default function EnquiryManagement() {
                   {/* Info */}
                   <div className="md:col-span-2">
                     <h3 className="text-lg font-bold text-white mb-1">{enq.hallName}</h3>
-                    <p className="text-sm text-gray-400 mb-2">👤 {enq.customerName}</p>
-                    <p className="text-sm text-gray-300 line-clamp-2">💬 {enq.message}</p>
+                    <p className="text-sm text-gray-600 mb-2">👤 {enq.customerName}</p>
+                    <p className="text-sm text-gray-700 line-clamp-2">💬 {enq.message}</p>
                   </div>
 
                   {/* Status */}
@@ -239,7 +239,7 @@ export default function EnquiryManagement() {
                       💬 Respond
                     </motion.button>
                     <motion.button
-                      className="px-4 py-2 bg-gradient-to-r from-gray-500/20 to-slate-500/20 border border-gray-500/30 text-gray-300 rounded-lg font-semibold hover:from-gray-500/40 hover:to-slate-500/40 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-4 py-2 bg-gradient-to-r from-gray-500/20 to-slate-500/20 border border-gray-500/30 text-gray-700 rounded-lg font-semibold hover:from-gray-500/40 hover:to-slate-500/40 transition disabled:opacity-50 disabled:cursor-not-allowed"
                       disabled={enq.status === 'closed' || actionLoading === enq.id}
                       onClick={() => handleClose(enq.id)}
                       whileHover={{ scale: 1.02 }}
@@ -264,3 +264,7 @@ export default function EnquiryManagement() {
     </div>
   );
 }
+
+
+
+

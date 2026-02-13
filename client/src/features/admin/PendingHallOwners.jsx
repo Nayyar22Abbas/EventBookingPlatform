@@ -38,7 +38,7 @@ export default function PendingHallOwners() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-8 flex items-center justify-center">
         <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: 'linear' }} className="w-12 h-12 border-4 border-[#bfa544]/30 border-t-[#bfa544] rounded-full" />
       </div>
     );
@@ -46,16 +46,16 @@ export default function PendingHallOwners() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-8 flex items-center justify-center">
         <motion.div className="text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <p className="text-red-400 text-xl">❌ {error}</p>
+          <p className="text-red-600 text-xl">❌ {error}</p>
         </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -64,10 +64,10 @@ export default function PendingHallOwners() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-2">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[#7a2222] mb-2">
             Pending <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Hall Owners</span>
           </h1>
-          <p className="text-xl text-gray-300">Review and approve new hall owner registrations</p>
+          <p className="text-xl text-gray-700">Review and approve new hall owner registrations</p>
         </motion.div>
 
         {/* Toast */}
@@ -92,8 +92,8 @@ export default function PendingHallOwners() {
             animate={{ opacity: 1 }}
           >
             <div className="text-6xl mb-4">🎉</div>
-            <p className="text-gray-300 text-xl">No pending hall owners</p>
-            <p className="text-gray-400">All applications have been reviewed</p>
+            <p className="text-gray-700 text-xl">No pending hall owners</p>
+            <p className="text-gray-600">All applications have been reviewed</p>
           </motion.div>
         ) : (
           <motion.div
@@ -105,7 +105,7 @@ export default function PendingHallOwners() {
             {owners.map((owner, i) => (
               <motion.div
                 key={owner.id}
-                className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-[#bfa544]/50 transition"
+                className="bg-gradient-to-br bg-white/80 backdrop-blur-xl border border-[#bfa544]/20 rounded-2xl p-6 hover:border-[#bfa544]/50 transition"
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                 whileHover={{ y: -5 }}
               >
@@ -116,16 +116,16 @@ export default function PendingHallOwners() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-bold text-white">{owner.name}</h3>
-                    <p className="text-sm text-gray-400">{owner.email}</p>
+                    <p className="text-sm text-gray-600">{owner.email}</p>
                   </div>
                 </div>
 
                 {/* Info */}
-                <div className="space-y-2 mb-4 pb-4 border-b border-white/10">
-                  <p className="text-sm text-gray-300">
+                <div className="space-y-2 mb-4 pb-4 border-b border-[#bfa544]/20">
+                  <p className="text-sm text-gray-700">
                     <span className="text-gray-500">Applied:</span> {new Date(owner.createdAt).toLocaleDateString()}
                   </p>
-                  <p className="text-sm text-gray-300">
+                  <p className="text-sm text-gray-700">
                     <span className="text-gray-500">Status:</span> <span className="text-yellow-400 font-semibold">⏳ Pending</span>
                   </p>
                 </div>
@@ -159,3 +159,6 @@ export default function PendingHallOwners() {
     </div>
   );
 }
+
+
+

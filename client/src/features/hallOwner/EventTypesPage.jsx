@@ -96,7 +96,7 @@ const EventTypesPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-8 flex items-center justify-center">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
@@ -107,7 +107,7 @@ const EventTypesPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="mb-8"
@@ -115,10 +115,10 @@ const EventTypesPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-2">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[#7a2222] mb-2">
             Event <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Types</span>
           </h1>
-          <p className="text-xl text-gray-300">Manage pricing modifiers for different event types</p>
+          <p className="text-xl text-gray-700">Manage pricing modifiers for different event types</p>
         </motion.div>
 
         {error && (
@@ -127,7 +127,7 @@ const EventTypesPage = () => {
             animate={{ opacity: 1, y: 0 }}
             className="bg-red-500/20 border border-red-500/30 rounded-xl p-4 mb-6 flex items-center gap-3"
           >
-            <AlertCircle className="text-red-400" size={20} />
+            <AlertCircle className="text-red-600" size={20} />
             <p className="text-red-300">{error}</p>
           </motion.div>
         )}
@@ -135,7 +135,7 @@ const EventTypesPage = () => {
         {/* Add Event Type Button */}
         <motion.button
           onClick={() => setShowForm(!showForm)}
-          className="mb-8 px-6 py-3 bg-gradient-to-r from-[#bfa544] to-[#8b7a2a] text-white rounded-xl font-bold flex items-center gap-2 hover:shadow-lg transition"
+          className="mb-8 px-6 py-3 bg-gradient-to-r from-[#bfa544] to-[#8b7a2a] text-[#7a2222] rounded-xl font-bold flex items-center gap-2 hover:shadow-lg transition"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -148,16 +148,16 @@ const EventTypesPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-gradient-to-br from-slate-800/50 to-slate-800/30 border border-white/10 rounded-2xl p-6 mb-8"
+            className="bg-gradient-to-br from-slate-800/50 to-slate-800/30 border border-[#bfa544]/20 rounded-2xl p-6 mb-8"
           >
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-2">Hall</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Hall</label>
                   <select
                     value={formData.hallId}
                     onChange={(e) => setFormData({ ...formData, hallId: e.target.value })}
-                    className="w-full px-4 py-2 bg-slate-700 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-4 py-2 bg-slate-700 border border-[#bfa544]/20 rounded-lg text-[#7a2222] focus:outline-none focus:ring-2 focus:ring-amber-500"
                     required
                   >
                     <option value="">Select a hall</option>
@@ -169,11 +169,11 @@ const EventTypesPage = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-2">Event Type</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Event Type</label>
                   <select
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-2 bg-slate-700 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    className="w-full px-4 py-2 bg-slate-700 border border-[#bfa544]/20 rounded-lg text-[#7a2222] focus:outline-none focus:ring-2 focus:ring-amber-500"
                     required
                   >
                     {eventTypeOptions.map((opt) => (
@@ -185,35 +185,35 @@ const EventTypesPage = () => {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-300 mb-2">Price Modifier (%)</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Price Modifier (%)</label>
                 <input
                   type="number"
                   value={formData.priceModifier}
                   onChange={(e) => setFormData({ ...formData, priceModifier: parseFloat(e.target.value) })}
-                  className="w-full px-4 py-2 bg-slate-700 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-4 py-2 bg-slate-700 border border-[#bfa544]/20 rounded-lg text-[#7a2222] focus:outline-none focus:ring-2 focus:ring-amber-500"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-300 mb-2">Description</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Description</label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-4 py-2 bg-slate-700 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"
+                  className="w-full px-4 py-2 bg-slate-700 border border-[#bfa544]/20 rounded-lg text-[#7a2222] focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"
                   rows="3"
                 />
               </div>
               <div className="flex gap-4">
                 <button
                   type="submit"
-                  className="flex-1 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg font-semibold hover:shadow-lg transition"
+                  className="flex-1 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-[#7a2222] rounded-lg font-semibold hover:shadow-lg transition"
                 >
                   Save
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowForm(false)}
-                  className="flex-1 py-2 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600 transition"
+                  className="flex-1 py-2 bg-gray-700 text-[#7a2222] rounded-lg font-semibold hover:bg-gray-600 transition"
                 >
                   Cancel
                 </button>
@@ -230,7 +230,7 @@ const EventTypesPage = () => {
             animate={{ opacity: 1 }}
           >
             <div className="text-6xl mb-4">📅</div>
-            <p className="text-gray-300 text-xl">No event types defined yet</p>
+            <p className="text-gray-700 text-xl">No event types defined yet</p>
           </motion.div>
         ) : (
           <motion.div
@@ -242,18 +242,18 @@ const EventTypesPage = () => {
             {eventTypes.map((et) => (
               <motion.div
                 key={et._id}
-                className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6"
+                className="bg-gradient-to-br bg-white/80 backdrop-blur-xl border border-[#bfa544]/20 rounded-2xl p-6"
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               >
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-white">{et.name}</h3>
+                  <h3 className="text-xl font-bold text-[#7a2222]">{et.name}</h3>
                   <div className="flex items-center gap-1 bg-amber-500/20 px-3 py-1 rounded-lg">
                     <Percent size={16} className="text-amber-400" />
                     <span className="text-amber-400 font-bold">{et.priceModifier}%</span>
                   </div>
                 </div>
-                <p className="text-sm text-gray-400 mb-2">{et.hall?.name || 'N/A'}</p>
-                <p className="text-sm text-gray-300 mb-4 line-clamp-2">{et.description}</p>
+                <p className="text-sm text-gray-600 mb-2">{et.hall?.name || 'N/A'}</p>
+                <p className="text-sm text-gray-700 mb-4 line-clamp-2">{et.description}</p>
                 <button
                   onClick={() => handleDelete(et._id)}
                   className="w-full py-2 px-4 bg-red-500/20 border border-red-500/30 text-red-300 rounded-lg font-semibold hover:bg-red-500/40 transition flex items-center justify-center gap-2"
@@ -271,3 +271,4 @@ const EventTypesPage = () => {
 };
 
 export default EventTypesPage;
+

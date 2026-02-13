@@ -2,11 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import customerApi from '../../api/customerApi';
+import useAuthStore from '../../hooks/useAuth';
 
 const BookingPage = () => {
   const { id: hallId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const { isAuthenticated } = useAuthStore();
+  
+  // Check if user is authenticated
+  useEffect(() => {
+    if (!isAuthenticated) {
+      // Redirect to login but preserve booking context
+      navigate('/auth/login', { 
+        state: { 
+          from: location,
+          hallId: hallId,
+          date: location.state?.date || new Date().toISOString().split('T')[0]
+        },
+        replace: true 
+      });
+    }
+  }, [isAuthenticated, hallId, location, navigate]);
+
   const [hall, setHall] = useState(null);
   const [timeSlots, setTimeSlots] = useState([]);
   const [menus, setMenus] = useState([]);
@@ -154,7 +172,7 @@ const BookingPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] flex items-center justify-center">
         <motion.div
           className="relative w-16 h-16"
           animate={{ rotate: 360 }}
@@ -168,7 +186,7 @@ const BookingPage = () => {
 
   if (!hall) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-8">
         <div className="max-w-3xl mx-auto">
           <motion.div
             className="bg-red-500/20 border border-red-500/50 rounded-2xl p-12 text-center"
@@ -191,7 +209,7 @@ const BookingPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -199,10 +217,10 @@ const BookingPage = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="text-5xl font-extrabold text-white mb-3">
+          <h1 className="text-5xl font-extrabold text-[#7a2222] mb-3">
             Complete Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Booking</span>
           </h1>
-          <p className="text-xl text-gray-300">Booking for <span className="font-bold text-[#bfa544]">{hall.name}</span></p>
+          <p className="text-xl text-gray-700">Booking for <span className="font-bold text-[#bfa544]">{hall.name}</span></p>
         </motion.div>
 
         {/* Success Message */}
@@ -239,7 +257,7 @@ const BookingPage = () => {
           >
             {/* Date */}
             <motion.div
-              className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10"
+              className="bg-gradient-to-br bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-[#bfa544]/20"
               whileHover={{ y: -2 }}
             >
               <label className="block text-sm font-bold text-gray-200 mb-3">📅 Event Date *</label>
@@ -249,7 +267,7 @@ const BookingPage = () => {
                 value={form.date}
                 onChange={handleChange}
                 min={new Date().toISOString().split('T')[0]}
-                className={`w-full px-5 py-3 bg-slate-600/50 border rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition ${
+                className={`w-full px-5 py-3 bg-white border rounded-xl text-[#7a2222] placeholder-gray-500 focus:outline-none focus:ring-2 transition ${
                   validationErrors.date
                     ? 'border-red-500 focus:ring-red-500'
                     : 'border-[#bfa544]/30 focus:ring-[#bfa544] focus:border-transparent'
@@ -257,7 +275,7 @@ const BookingPage = () => {
               />
               {validationErrors.date && (
                 <motion.p
-                  className="text-red-400 text-sm mt-2"
+                  className="text-red-600 text-sm mt-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
@@ -268,7 +286,7 @@ const BookingPage = () => {
 
             {/* Time Slot */}
             <motion.div
-              className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10"
+              className="bg-gradient-to-br bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-[#bfa544]/20"
               whileHover={{ y: -2 }}
             >
               <label className="block text-sm font-bold text-gray-200 mb-4">⏰ Time Slot *</label>
@@ -289,7 +307,7 @@ const BookingPage = () => {
                         form.timeSlot === slot._id
                           ? 'bg-gradient-to-r from-[#bfa544]/40 to-[#8b7a2a]/40 border-[#bfa544] text-[#ffd700]'
                           : slot.status === 'available'
-                          ? 'bg-white/5 border-white/20 text-gray-300 hover:border-[#bfa544] hover:bg-white/10'
+                          ? 'bg-white/5 border-[#bfa544]/30 text-gray-700 hover:border-[#bfa544] hover:bg-white/10'
                           : 'bg-slate-600/30 border-slate-600/30 text-gray-600 cursor-not-allowed'
                       }`}
                       variants={{
@@ -304,11 +322,11 @@ const BookingPage = () => {
                   ))}
                 </motion.div>
               ) : (
-                <p className="text-gray-400 text-sm mb-2">❌ No time slots available for this date</p>
+                <p className="text-gray-600 text-sm mb-2">❌ No time slots available for this date</p>
               )}
               {validationErrors.timeSlot && (
                 <motion.p
-                  className="text-red-400 text-sm mt-2"
+                  className="text-red-600 text-sm mt-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
@@ -319,7 +337,7 @@ const BookingPage = () => {
 
             {/* Event Function */}
             <motion.div
-              className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10"
+              className="bg-gradient-to-br bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-[#bfa544]/20"
               whileHover={{ y: -2 }}
             >
               <label className="block text-sm font-bold text-gray-200 mb-3">🎉 Event Function *</label>
@@ -327,7 +345,7 @@ const BookingPage = () => {
                 name="functionType"
                 value={form.functionType}
                 onChange={handleChange}
-                className={`w-full px-5 py-3 bg-slate-600/50 border rounded-xl text-white focus:outline-none focus:ring-2 transition ${
+                className={`w-full px-5 py-3 bg-white border rounded-xl text-[#7a2222] focus:outline-none focus:ring-2 transition ${
                   validationErrors.functionType
                     ? 'border-red-500 focus:ring-red-500'
                     : 'border-[#bfa544]/30 focus:ring-[#bfa544] focus:border-transparent'
@@ -345,7 +363,7 @@ const BookingPage = () => {
               </select>
               {validationErrors.functionType && (
                 <motion.p
-                  className="text-red-400 text-sm mt-2"
+                  className="text-red-600 text-sm mt-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
@@ -356,7 +374,7 @@ const BookingPage = () => {
 
             {/* Number of Guests */}
             <motion.div
-              className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10"
+              className="bg-gradient-to-br bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-[#bfa544]/20"
               whileHover={{ y: -2 }}
             >
               <label className="block text-sm font-bold text-gray-200 mb-3">👥 Number of Guests *</label>
@@ -367,17 +385,17 @@ const BookingPage = () => {
                 onChange={handleChange}
                 min="1"
                 max={hall.capacity}
-                className={`w-full px-5 py-3 bg-slate-600/50 border rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition ${
+                className={`w-full px-5 py-3 bg-white border rounded-xl text-[#7a2222] placeholder-gray-500 focus:outline-none focus:ring-2 transition ${
                   validationErrors.guestCount
                     ? 'border-red-500 focus:ring-red-500'
                     : 'border-[#bfa544]/30 focus:ring-[#bfa544] focus:border-transparent'
                 }`}
                 placeholder="Enter number of guests"
               />
-              <p className="text-sm text-gray-400 mt-2">Max capacity: <span className="text-[#bfa544] font-bold">{hall.capacity}</span> guests</p>
+              <p className="text-sm text-gray-600 mt-2">Max capacity: <span className="text-[#bfa544] font-bold">{hall.capacity}</span> guests</p>
               {validationErrors.guestCount && (
                 <motion.p
-                  className="text-red-400 text-sm mt-2"
+                  className="text-red-600 text-sm mt-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
@@ -388,7 +406,7 @@ const BookingPage = () => {
 
             {/* Menu */}
             <motion.div
-              className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10"
+              className="bg-gradient-to-br bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-[#bfa544]/20"
               whileHover={{ y: -2 }}
             >
               <label className="block text-sm font-bold text-gray-200 mb-3">🍽️ Select Menu *</label>
@@ -396,7 +414,7 @@ const BookingPage = () => {
                 name="menuId"
                 value={form.menuId}
                 onChange={handleChange}
-                className={`w-full px-5 py-3 bg-slate-600/50 border rounded-xl text-white focus:outline-none focus:ring-2 transition ${
+                className={`w-full px-5 py-3 bg-white border rounded-xl text-[#7a2222] focus:outline-none focus:ring-2 transition ${
                   validationErrors.menuId
                     ? 'border-red-500 focus:ring-red-500'
                     : 'border-[#bfa544]/30 focus:ring-[#bfa544] focus:border-transparent'
@@ -411,7 +429,7 @@ const BookingPage = () => {
               </select>
               {validationErrors.menuId && (
                 <motion.p
-                  className="text-red-400 text-sm mt-2"
+                  className="text-red-600 text-sm mt-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
@@ -422,7 +440,7 @@ const BookingPage = () => {
 
             {/* Additional Notes */}
             <motion.div
-              className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10"
+              className="bg-gradient-to-br bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-[#bfa544]/20"
               whileHover={{ y: -2 }}
             >
               <label className="block text-sm font-bold text-gray-200 mb-3">📝 Additional Notes</label>
@@ -431,7 +449,7 @@ const BookingPage = () => {
                 value={form.notes}
                 onChange={handleChange}
                 rows="4"
-                className="w-full px-5 py-3 bg-slate-600/50 border border-[#bfa544]/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition resize-none"
+                className="w-full px-5 py-3 bg-white border border-[#bfa544]/30 rounded-xl text-[#7a2222] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#bfa544] focus:border-transparent transition resize-none"
                 placeholder="Any special requirements or requests..."
               />
             </motion.div>
@@ -476,10 +494,10 @@ const BookingPage = () => {
             transition={{ delay: 0.2 }}
           >
             <div className="sticky top-8 bg-gradient-to-br from-slate-800/70 to-slate-700/70 backdrop-blur-xl rounded-2xl p-8 border border-[#bfa544]/30 shadow-2xl">
-              <h3 className="text-2xl font-bold text-white mb-6">📋 Summary</h3>
+              <h3 className="text-2xl font-bold text-[#7a2222] mb-6">📋 Summary</h3>
               
               <motion.div
-                className="space-y-3 text-sm border-b border-white/10 pb-6 mb-6"
+                className="space-y-3 text-sm border-b border-[#bfa544]/20 pb-6 mb-6"
                 variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.05 } } }}
                 initial="hidden"
                 animate="visible"
@@ -499,7 +517,7 @@ const BookingPage = () => {
                       visible: { opacity: 1, x: 0 }
                     }}
                   >
-                    <span className="text-gray-400">{item.label}:</span>
+                    <span className="text-gray-600">{item.label}:</span>
                     <span className="font-bold text-white">{item.value}</span>
                   </motion.div>
                 ))}
@@ -522,7 +540,7 @@ const BookingPage = () => {
                     animate="visible"
                   >
                     <motion.div
-                      className="flex justify-between text-gray-300"
+                      className="flex justify-between text-gray-700"
                       variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
                     >
                       <span>Base Price:</span>
@@ -531,7 +549,7 @@ const BookingPage = () => {
                     
                     {pricing.menuPrice > 0 && (
                       <motion.div
-                        className="flex justify-between text-gray-300"
+                        className="flex justify-between text-gray-700"
                         variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
                       >
                         <span>Menu ({form.guestCount} guests):</span>
@@ -541,7 +559,7 @@ const BookingPage = () => {
                     
                     {pricing.functionTypeCharge > 0 && (
                       <motion.div
-                        className="flex justify-between text-gray-300"
+                        className="flex justify-between text-gray-700"
                         variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
                       >
                         <span>{form.functionType} Charge:</span>
@@ -554,7 +572,7 @@ const BookingPage = () => {
                         {pricing.additionalCharges.map((charge, idx) => (
                           <motion.div
                             key={idx}
-                            className="flex justify-between text-gray-300"
+                            className="flex justify-between text-gray-700"
                             variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
                           >
                             <span>{charge.name}:</span>
@@ -571,7 +589,7 @@ const BookingPage = () => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
                   >
-                    <div className="flex justify-between font-bold text-white text-lg">
+                    <div className="flex justify-between font-bold text-gray-900 text-lg">
                       <span>Total:</span>
                       <motion.span
                         className="text-[#ffd700]"
@@ -586,7 +604,7 @@ const BookingPage = () => {
                 </motion.div>
               ) : (
                 <motion.div
-                  className="bg-white/5 rounded-xl p-6 text-center text-gray-400 text-sm border border-white/10"
+                  className="bg-white/5 rounded-xl p-6 text-center text-gray-600 text-sm border border-[#bfa544]/20"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
@@ -614,4 +632,8 @@ const BookingPage = () => {
 };
 
 export default BookingPage;
+
+
+
+
 

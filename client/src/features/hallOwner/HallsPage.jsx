@@ -83,7 +83,7 @@ const HallsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-8 flex items-center justify-center">
         <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: 'linear' }} className="w-12 h-12 border-4 border-[#bfa544]/30 border-t-[#bfa544] rounded-full" />
       </div>
     );
@@ -91,16 +91,16 @@ const HallsPage = () => {
 
   if (error && halls.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-8 flex items-center justify-center">
         <motion.div className="text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <p className="text-red-400 text-xl">❌ {error}</p>
+          <p className="text-red-600 text-xl">❌ {error}</p>
         </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -109,10 +109,10 @@ const HallsPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-2">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bfa544] to-[#ffd700]">Halls</span>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[#7a2222] mb-2">
+            My Halls
           </h1>
-          <p className="text-xl text-gray-300">Manage your event venues and listings</p>
+          <p className="text-xl text-gray-700">Manage your event venues and listings</p>
         </motion.div>
 
         {/* Empty State */}
@@ -144,12 +144,12 @@ const HallsPage = () => {
             {halls.map((hall) => (
               <motion.div
                 key={hall._id}
-                className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:border-[#bfa544]/50 transition group"
+                className="bg-white/80 backdrop-blur-sm border border-[#bfa544]/20 rounded-2xl overflow-hidden hover:border-[#bfa544]/50 transition group"
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                 whileHover={{ y: -5 }}
               >
                 {/* Hall Image Gallery */}
-                <div className="relative w-full h-48 bg-gradient-to-br from-[#bfa544]/20 to-[#7a2222]/20 border-b border-white/10 overflow-hidden">
+                <div className="relative w-full h-48 bg-gradient-to-br from-[#bfa544]/20 to-[#7a2222]/20 border-b border-[#bfa544]/20 overflow-hidden">
                   {hall.images && hall.images.length > 0 ? (
                     <div className="relative w-full h-full">
                       <div className="flex items-center justify-center w-full h-full">
@@ -171,7 +171,7 @@ const HallsPage = () => {
                     <div className="w-full h-full flex items-center justify-center">
                       <div className="text-center">
                         <span className="text-5xl">🏛️</span>
-                        <p className="text-gray-400 text-sm mt-2">No images</p>
+                        <p className="text-gray-600 text-sm mt-2">No images</p>
                       </div>
                     </div>
                   )}
@@ -179,19 +179,19 @@ const HallsPage = () => {
 
                 {/* Hall Info */}
                 <div className="p-6 space-y-3">
-                  <h3 className="text-xl font-bold text-white truncate">{hall.name}</h3>
+                  <h3 className="text-xl font-bold text-[#7a2222] truncate">{hall.name}</h3>
                   
-                  <p className="text-sm text-gray-400 line-clamp-2">{hall.address}</p>
+                  <p className="text-sm text-gray-700 line-clamp-2">{hall.address}</p>
 
                   {/* Stats Grid */}
-                  <div className="grid grid-cols-2 gap-2 py-3 border-y border-white/10">
+                  <div className="grid grid-cols-2 gap-2 py-3 border-y border-[#bfa544]/20">
                     <div className="text-center">
                       <p className="text-2xl font-bold text-[#bfa544]">{hall.capacity}</p>
-                      <p className="text-xs text-gray-400">Capacity</p>
+                      <p className="text-xs text-gray-700">Capacity</p>
                     </div>
                     <div className="text-center">
                       <p className="text-2xl font-bold text-[#ffd700]">₹{hall.basePrice}</p>
-                      <p className="text-xs text-gray-400">Base Price</p>
+                      <p className="text-xs text-gray-700">Base Price</p>
                     </div>
                   </div>
 
@@ -248,48 +248,48 @@ const HallsPage = () => {
               onClick={() => setShowModal(false)}
             >
               <motion.div
-                className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 max-w-md w-full border border-white/10"
+                className="bg-white/90 backdrop-blur-md rounded-2xl p-8 max-w-md w-full border border-[#bfa544]/20"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 onClick={e => e.stopPropagation()}
               >
-                <h2 className="text-3xl font-bold text-white mb-6">Add New Hall</h2>
+                <h2 className="text-3xl font-bold text-[#7a2222] mb-6">Add New Hall</h2>
                 <form onSubmit={handleSubmit} className="space-y-4 max-h-96 overflow-y-auto">
                   <input
                     type="text"
                     placeholder="Hall Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-2 bg-slate-700/50 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#bfa544]"
+                    className="w-full px-4 py-2 bg-white border border-[#bfa544]/30 rounded-lg text-[#7a2222] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#bfa544] text-sm"
                   />
                   <input
                     type="text"
                     placeholder="Address"
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="w-full px-4 py-2 bg-slate-700/50 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#bfa544]"
+                    className="w-full px-4 py-2 bg-slate-700/50 border border-white/10 rounded-lg text-[#7a2222] placeholder-gray-500 focus:outline-none focus:border-[#bfa544]"
                   />
                   <input
                     type="text"
                     placeholder="City"
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    className="w-full px-4 py-2 bg-slate-700/50 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#bfa544]"
+                    className="w-full px-4 py-2 bg-slate-700/50 border border-white/10 rounded-lg text-[#7a2222] placeholder-gray-500 focus:outline-none focus:border-[#bfa544]"
                   />
                   <input
                     type="number"
                     placeholder="Capacity"
                     value={formData.capacity}
                     onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
-                    className="w-full px-4 py-2 bg-slate-700/50 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#bfa544]"
+                    className="w-full px-4 py-2 bg-slate-700/50 border border-white/10 rounded-lg text-[#7a2222] placeholder-gray-500 focus:outline-none focus:border-[#bfa544]"
                   />
                   <input
                     type="number"
                     placeholder="Base Price (₹)"
                     value={formData.basePrice}
                     onChange={(e) => setFormData({ ...formData, basePrice: e.target.value })}
-                    className="w-full px-4 py-2 bg-slate-700/50 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#bfa544]"
+                    className="w-full px-4 py-2 bg-slate-700/50 border border-white/10 rounded-lg text-[#7a2222] placeholder-gray-500 focus:outline-none focus:border-[#bfa544]"
                   />
 
                   {/* Image Upload */}
@@ -297,7 +297,7 @@ const HallsPage = () => {
                     <label className="cursor-pointer">
                       <div className="text-center">
                         <p className="text-[#bfa544] font-semibold">📸 Click to upload images</p>
-                        <p className="text-gray-400 text-sm">PNG, JPG, GIF up to 5MB</p>
+                        <p className="text-gray-600 text-sm">PNG, JPG, GIF up to 5MB</p>
                       </div>
                       <input
                         type="file"
@@ -312,14 +312,14 @@ const HallsPage = () => {
                   {/* Image Previews */}
                   {imagePreviews.length > 0 && (
                     <div className="space-y-2">
-                      <p className="text-white font-semibold">Selected Images ({imagePreviews.length})</p>
+                      <p className="text-[#7a2222] font-semibold">Selected Images ({imagePreviews.length})</p>
                       <div className="grid grid-cols-3 gap-2">
                         {imagePreviews.map((preview, idx) => (
                           <div key={idx} className="relative">
                             <img
                               src={preview}
                               alt={`Preview ${idx}`}
-                              className="w-full h-20 object-cover rounded-lg border border-white/10"
+                              className="w-full h-20 object-cover rounded-lg border border-[#bfa544]/20"
                             />
                             <motion.button
                               type="button"
@@ -370,3 +370,5 @@ const HallsPage = () => {
 };
 
 export default HallsPage;
+
+

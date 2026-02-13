@@ -17,7 +17,7 @@ const StatusBadge = ({ status }) => {
   const Icon = config.icon;
 
   return (
-    <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${config.bg} text-white font-semibold text-sm`}>
+    <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${config.bg} text-[#7a2222] font-semibold text-sm`}>
       <Icon size={16} />
       {config.text}
     </div>
@@ -35,22 +35,22 @@ const ConfirmationModal = ({ isOpen, title, message, onConfirm, onCancel, isLoad
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
-          className="bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 rounded-2xl p-6 max-w-sm mx-4 backdrop-blur-xl"
+          className="bg-gradient-to-br bg-white/90 border border-[#bfa544]/20 rounded-2xl p-6 max-w-sm mx-4 backdrop-blur-xl"
         >
-          <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-          <p className="text-gray-300 mb-6">{message}</p>
+          <h3 className="text-xl font-bold text-[#7a2222] mb-2">{title}</h3>
+          <p className="text-gray-700 mb-6">{message}</p>
           <div className="flex gap-4">
             <button
               onClick={onCancel}
               disabled={isLoading}
-              className="flex-1 px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-[#7a2222] font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Cancel
             </button>
             <button
               onClick={onConfirm}
               disabled={isLoading}
-              className={`flex-1 px-4 py-2 rounded-lg text-white font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+              className={`flex-1 px-4 py-2 rounded-lg text-[#7a2222] font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                 variant === 'danger'
                   ? 'bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600'
                   : 'bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600'
@@ -78,15 +78,15 @@ const RejectReasonModal = ({ isOpen, onConfirm, onCancel, isLoading }) => {
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
-          className="bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 rounded-2xl p-6 max-w-sm mx-4 backdrop-blur-xl"
+          className="bg-gradient-to-br bg-white/90 border border-[#bfa544]/20 rounded-2xl p-6 max-w-sm mx-4 backdrop-blur-xl"
         >
-          <h3 className="text-xl font-bold text-white mb-2">Reject Booking</h3>
-          <p className="text-gray-300 mb-4">Please provide a reason for rejection (optional):</p>
+          <h3 className="text-xl font-bold text-[#7a2222] mb-2">Reject Booking</h3>
+          <p className="text-gray-700 mb-4">Please provide a reason for rejection (optional):</p>
           <textarea
             value={reason}
             onChange={(e) => setReason(e.target.value)}
             placeholder="e.g., Date not available, or other reason..."
-            className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent mb-4 resize-none"
+            className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-[#bfa544]/20 text-[#7a2222] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent mb-4 resize-none"
             rows={4}
             disabled={isLoading}
           />
@@ -94,14 +94,14 @@ const RejectReasonModal = ({ isOpen, onConfirm, onCancel, isLoading }) => {
             <button
               onClick={onCancel}
               disabled={isLoading}
-              className="flex-1 px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-[#7a2222] font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Cancel
             </button>
             <button
               onClick={() => onConfirm(reason)}
               disabled={isLoading}
-              className="flex-1 px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-[#7a2222] font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? 'Processing...' : 'Reject'}
             </button>
@@ -217,7 +217,7 @@ export default function HallOwnerBookingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8DC] via-[#F5DEB3] to-[#FFD700] p-4 sm:p-6 lg:p-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -228,7 +228,7 @@ export default function HallOwnerBookingsPage() {
           <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 bg-clip-text text-transparent mb-2">
             Booking Management
           </h1>
-          <p className="text-gray-300">Manage and track all your event bookings</p>
+          <p className="text-gray-700">Manage and track all your event bookings</p>
         </div>
 
         {/* Error Message */}
@@ -238,7 +238,7 @@ export default function HallOwnerBookingsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-xl p-4 mb-6 flex items-gap-3"
           >
-            <AlertCircle className="text-red-400 flex-shrink-0" size={20} />
+            <AlertCircle className="text-red-600 flex-shrink-0" size={20} />
             <p className="text-red-300">{error}</p>
           </motion.div>
         )}
@@ -257,13 +257,13 @@ export default function HallOwnerBookingsPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-gradient-to-br from-slate-800/50 to-slate-800/30 border border-white/10 rounded-2xl backdrop-blur-xl p-12 text-center"
+            className="bg-gradient-to-br from-slate-800/50 to-slate-800/30 border border-[#bfa544]/20 rounded-2xl backdrop-blur-xl p-12 text-center"
           >
             <div className="w-16 h-16 mx-auto bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full flex items-center justify-center mb-4">
               <Calendar className="text-slate-900" size={32} />
             </div>
-            <h2 className="text-xl font-bold text-white mb-2">No Bookings Yet</h2>
-            <p className="text-gray-400 mb-6">You don't have any bookings at the moment. Bookings from customers will appear here.</p>
+            <h2 className="text-xl font-bold text-[#7a2222] mb-2">No Bookings Yet</h2>
+            <p className="text-gray-600 mb-6">You don't have any bookings at the moment. Bookings from customers will appear here.</p>
           </motion.div>
         ) : (
           // Bookings Table
@@ -271,20 +271,20 @@ export default function HallOwnerBookingsPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-gradient-to-br from-slate-800/50 to-slate-800/30 border border-white/10 rounded-2xl backdrop-blur-xl overflow-hidden"
+            className="bg-gradient-to-br from-slate-800/50 to-slate-800/30 border border-[#bfa544]/20 rounded-2xl backdrop-blur-xl overflow-hidden"
           >
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-white/10 bg-black/20">
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Customer</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Hall</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Event Type</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Date</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Guests</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Total</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Status</th>
-                    <th className="px-6 py-4 text-center text-xs font-semibold text-gray-300 uppercase tracking-wider">Actions</th>
+                  <tr className="border-b border-[#bfa544]/20 bg-black/20">
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Customer</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Hall</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Event Type</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Date</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Guests</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Total</th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Status</th>
+                    <th className="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -296,19 +296,19 @@ export default function HallOwnerBookingsPage() {
                       transition={{ duration: 0.3, delay: idx * 0.05 }}
                       className="border-b border-white/5 hover:bg-white/5 transition-colors"
                     >
-                      <td className="px-6 py-4 text-sm text-white font-medium">
+                      <td className="px-6 py-4 text-sm text-[#7a2222] font-medium">
                         {booking.customer?.name || 'N/A'}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-300">
+                      <td className="px-6 py-4 text-sm text-gray-700">
                         {booking.hall?.name || 'N/A'}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-300">
+                      <td className="px-6 py-4 text-sm text-gray-700">
                         {booking.eventType?.name || booking.functionType || 'N/A'}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-300">
+                      <td className="px-6 py-4 text-sm text-gray-700">
                         {booking.timeSlot?.date ? formatDate(booking.timeSlot.date) : 'N/A'}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-300">
+                      <td className="px-6 py-4 text-sm text-gray-700">
                         <div className="flex items-center gap-1">
                           <Users size={16} className="text-amber-400" />
                           {booking.guestCount}
@@ -329,13 +329,13 @@ export default function HallOwnerBookingsPage() {
                             <>
                               <button
                                 onClick={() => setApproveModal({ isOpen: true, bookingId: booking._id })}
-                                className="px-3 py-1 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white text-xs font-semibold transition-all"
+                                className="px-3 py-1 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-[#7a2222] text-xs font-semibold transition-all"
                               >
                                 Approve
                               </button>
                               <button
                                 onClick={() => handleRejectClick(booking._id)}
-                                className="px-3 py-1 rounded-lg bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white text-xs font-semibold transition-all"
+                                className="px-3 py-1 rounded-lg bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-[#7a2222] text-xs font-semibold transition-all"
                               >
                                 Reject
                               </button>
@@ -344,13 +344,13 @@ export default function HallOwnerBookingsPage() {
                           {booking.status === 'confirmed' && (
                             <button
                               onClick={() => setCompleteModal({ isOpen: true, bookingId: booking._id })}
-                              className="px-3 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white text-xs font-semibold transition-all"
+                              className="px-3 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-[#7a2222] text-xs font-semibold transition-all"
                             >
                               Complete
                             </button>
                           )}
                           {!['pending', 'confirmed'].includes(booking.status) && (
-                            <span className="text-gray-400 text-xs">—</span>
+                            <span className="text-gray-600 text-xs">—</span>
                           )}
                         </div>
                       </td>
@@ -391,3 +391,4 @@ export default function HallOwnerBookingsPage() {
     </div>
   );
 }
+
