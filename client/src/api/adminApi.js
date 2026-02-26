@@ -2,8 +2,9 @@ import axios from 'axios';
 import useAuthStore from '../hooks/useAuth';
 
 // Create axios instance
+const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1';
 const adminApi = axios.create({
-  baseURL: '/api/v1/admin',
+  baseURL: `${apiBase}/admin`,
 });
 
 // Request interceptor to add Authorization header
